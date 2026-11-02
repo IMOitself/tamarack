@@ -1,9 +1,9 @@
 #include <jni.h>
 
-extern JNIEXPORT jstring JNICALL
-Java_com_tamarack_bridge_Native_stringFromJNI(
+extern JNIEXPORT void JNICALL
+Java_com_tamarack_bridge_Native_runProc(
         JNIEnv* env,
         jobject thiz)
 {
-    return (*env)->NewStringUTF(env, "hmm");
+    // TODO: write logic
 }

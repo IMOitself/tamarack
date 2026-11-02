@@ -2,8 +2,8 @@ package com.tamarack.bridge;
 
 public class Native {
     static {
-        System.loadLibrary("unnamed");
+        System.loadLibrary("tamarack");
     }
 
-    public static native String stringFromJNI();
+    public static native void runProc();
 }

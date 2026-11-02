@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "unnamed"
+rootProject.name = "tamarack"
 include(":app")
