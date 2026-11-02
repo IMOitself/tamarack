@@ -1,4 +1,4 @@
-# unnamed-project
-will have a name later idk:D
+# Tamarack
+an android ide idk yada yada theres a text here just for the purpose of having the text here and stuff idk.
 
-this project is generated for AIDE and is not intended to be that way. we cant compile it by gradle for now. will update it later:D
+will change this later:D
