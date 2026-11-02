@@ -25,7 +25,7 @@ this is only for building all in the terminal. tho it'll take 600mb of ur space.
 
 
 <details>
-<summary><h2>windows</h2></summary>
+<summary>windows</summary>
 
 **(do this once)**
 ```
@@ -60,36 +60,73 @@ $env:ANDROID_HOME="$PWD\temp_build\android-sdk"
 </details>
 
 <details>
-<summary><h2>linux</h2></summary>
+<summary>Linux</summary>
 
-**(do this once)**
-```
-curl -L -o jdk-21.0.12+8.tar.gz https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.12%2B8/OpenJDK21U-jdk_x64_linux_hotspot_21.0.12_8.tar.gz
-curl -L -o commandlinetools-linux.zip https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip
+### For Linux, use distribution specific package managers (e.g. pacman, apt).
+**NOTE: This guide expects bash.**  
+**NOTE: Some distributions provide the android sdk via package managers (e.g. Ubuntu).  
+If you already have the android sdk [check here](#building).**
 
-mkdir -p temp_build/jdk temp_build/android-sdk
-tar -xzf jdk-21.0.12+8.tar.gz -C temp_build/jdk
-unzip -q commandlinetools-linux.zip -d temp_build/android-sdk
-rm jdk-21.0.12+8.tar.gz commandlinetools-linux.zip
-
-mkdir -p temp_build/android-sdk/cmdline-tools/latest
-mv temp_build/android-sdk/cmdline-tools/bin temp_build/android-sdk/cmdline-tools/latest/bin
-mv temp_build/android-sdk/cmdline-tools/lib temp_build/android-sdk/cmdline-tools/latest/lib
-mv temp_build/android-sdk/cmdline-tools/NOTICE.txt temp_build/android-sdk/cmdline-tools/latest/
-mv temp_build/android-sdk/cmdline-tools/source.properties temp_build/android-sdk/cmdline-tools/latest/
+1. Install required packages (**Ubuntu or Debian based example**).
+```bash
+sudo apt update 
+sudo apt install curl unzip openjdk-21-jdk
 ```
 
-**(do this every new terminal session)**
-```
-export JAVA_HOME="$PWD/temp_build/jdk/jdk-21.0.12+8"
-export ANDROID_HOME="$PWD/temp_build/android-sdk"
-yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses
-"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platform-tools" "platforms;android-37.0"
+2. Download the commandline tools (**NOTE: [Check](https://developer.android.com/studio) for the latest version**).
+```bash
+curl -L -o /tmp/cmdline-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip
 ```
 
-**build**
+3. Create directories and extract the tools.
+```bash
+mkdir -p ~/Android/Sdk/cmdline-tools/latest
+unzip -o /tmp/cmdline-tools.zip -d /tmp
+
+mv /tmp/cmdline-tools/* ~/Android/Sdk/cmdline-tools/latest
+
+rm -rf /tmp/cmdline-tools.zip /tmp/cmdline-tools
 ```
-chmod +x gradlew
+
+4. Setup environment (**NOTE: You'll have to run these every time you (re)run a shell or reboot**).
+```bash
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+```
+
+* Setup environment (**Permanent**).
+
+1. Open `.bashrc` (You may use any text editor you like).
+```bash
+vi ~/.bashrc
+```
+
+2. Enter these lines at the bottom of the file.
+```bash
+export ANDROID_HOME="$HOME/Android/Sdk"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+```
+
+* **Before building accept licenses.**
+```bash
+yes | sdkmanager --licenses
+```
+
+### Building
+
+1. Clone the repository and move into it (You may use shallow clones).
+```bash
+git clone https://github.com/IMOitself/tamarack.git Tamarack
+cd Tamarack
+```
+
+2. Make gradlew executable.
+```bash
+chmod +x ./gradlew
+```
+
+3. Build the app (**NOTE: If the build fails with missing sdk components use `sdkmanager` to install them**)
+```bash
 ./gradlew assembleDebug
 ```
 
