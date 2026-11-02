@@ -1,4 +1,4 @@
-package com.unnamed;
+package com.tamarack;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,13 +6,10 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.unnamed.databinding.ActivityMainBinding;
+import com.tamarack.databinding.ActivityMainBinding;
+import com.tamarack.bridge.Native;
 
 public class MainActivity extends AppCompatActivity {
-
-    static {
-        System.loadLibrary("unnamed");
-    }
 
     private ActivityMainBinding binding;
 
@@ -26,9 +23,7 @@ public class MainActivity extends AppCompatActivity {
         TextView tv = binding.eh;
         Button btn = binding.button;
         btn.setOnClickListener(v -> tv.setText(
-                stringFromJNI()
+                Native.stringFromJNI()
         ));
     }
-
-    public native String stringFromJNI();
 }

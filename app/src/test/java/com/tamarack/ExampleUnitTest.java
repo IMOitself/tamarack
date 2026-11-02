@@ -1,4 +1,4 @@
-package com.unnamed;
+package com.tamarack;
 
 import org.junit.Test;
 
