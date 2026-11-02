@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace = "com.unnamed"
+    namespace = "com.tamarack"
     compileSdk {
         version = release(37)
     }
 
     defaultConfig {
-        applicationId = "com.unnamed"
+        applicationId = "com.tamarack"
         minSdk = 26
         targetSdk = 37
         versionCode = 1
