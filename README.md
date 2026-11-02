@@ -3,6 +3,23 @@ an android ide idk yada yada theres a text here just for the purpose of having t
 
 will change this later:D
 
+## commit messages
+u dont necessarily need to follow this but its good to try:D
+- `feat` - add, remove, modify a feature
+- `fix` - bugs. be descriptive pls
+- `chore` - code refactor, comments, things users wont see
+- `repo` - git related, anything viewable only on github
+- `readme` - edit the main README.md
+
+sample:
+```
+feat: add ketchup on my hotdog sandwhich
+fix: ketchup bottle has never been refilled yet
+chore: rename variable 'ketchup' to 'ketchupBottle'
+repo: add github actions for refilling ketchup
+readme: add reason why i use ketchup on this sample
+```
+
 ## building the app
 this is only for building all in the terminal. tho it'll take 600mb of ur space. but at least u dont need to install android studio:D
 
