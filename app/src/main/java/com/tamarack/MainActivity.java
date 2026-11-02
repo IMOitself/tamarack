@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.tamarack.databinding.ActivityMainBinding;
 import com.tamarack.bridge.Native;
+import com.tamarack.CodeEditorView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,8 +21,10 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        CodeEditorView codeEditor = binding.codeEditor;
         TextView tv = binding.eh;
         Button btn = binding.button;
+        
         btn.setOnClickListener(v -> tv.setText(
                 Native.stringFromJNI()
         ));
