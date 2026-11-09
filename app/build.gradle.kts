@@ -10,11 +10,15 @@ android {
 
     defaultConfig {
         applicationId = "com.tamarack"
-        minSdk = 26
+        minSdk = 28
         targetSdk = 37
         versionCode = 1
         versionName = "1.0"
         ndkVersion = "30.0.16248370"
+
+        ndk {
+            abiFilters += "arm64-v8a"
+        }
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
